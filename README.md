@@ -1,2 +1,3 @@
 # SearchOverflow
-A IDAPython script for searching overflows in IDA. Refacted by Bugscam.
+A IDAPython script for searching overflows in IDA. 
+Refactored by Bugscam.
