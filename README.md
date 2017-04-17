@@ -5,11 +5,14 @@ Now support：strcpy(), _strcpy(), strcat(), _strcat(), sprintf(), _sprintf(), w
   
 Refactored by Bugscam.
 
-##Usage
+## Usage
+
 Load script in IDA，then use command：SearchOverflow()
 
-##VersionLog： 
-   
-v1.2:Add sprintf(), _sprintf(), wsprintfA(), only support arg includes "%s".     
+## VersionLog
+
+v1.2:
+Add sprintf(), _sprintf(), wsprintfA(), only support arg includes "%s".     
     
-v1.1:Add lstrcatA(), lstrcpyA(), fixed command outputs.
+v1.1:
+Add lstrcatA(), lstrcpyA(), fixed command outputs.
