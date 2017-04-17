@@ -8,7 +8,7 @@ Refactored by Bugscam.
 ##Usage
 Load script in IDA，then use command：SearchOverflow()
 
-##VersionLog：   
+##VersionLog： 
    
 v1.2:Add sprintf(), _sprintf(), wsprintfA(), only support arg includes "%s".     
     
