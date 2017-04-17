@@ -357,7 +357,7 @@ def main():
         for Problem in g_Problem:
             print "[+]A %s() overflow at addr = 0x%lx"%(g_ProblemType[g_Problem.index(Problem)], Problem)
     else:
-        print "[*]No overflows can be finded. _(:з」∠)_"
+        print "[*]No overflows. _(:з」∠)_"
 
 #入口
 def SearchOverflow():
