@@ -127,7 +127,6 @@ def BuffSize(eaInstruc, iOpnum):
             return minval
 
     elif "offset" in Opnd:
-        #变量存放于堆空间的情况
         Opnd = Opnd[Opnd.find("offset", 0, len(Opnd))+7:-1]
         #Opnd = substr(Opnd,  strstr(Opnd,  "offset ")+7,  -1)
         minval = SHeapBuffSize(LocByName(Opnd))
