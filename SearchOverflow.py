@@ -62,7 +62,6 @@ def BuffSize(eaInstruc, iOpnum):
     global g_MinBufSize
     Opnd = GetOpnd(eaInstruc, iOpnum)
     if ("ebp" in Opnd) or ("esp" in Opnd):
-        #变量存放于栈空间的情况
         #去掉寄存器名，取得变量偏移
         while "+" in Opnd:
             Opnd = Opnd[Opnd.find("+", 0, len(Opnd))+1:-1]
