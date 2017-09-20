@@ -18,16 +18,16 @@ global g_ProblemType
 def GetArgBufSize(addr, index):
     global g_MaxSteps
     count = g_MaxSteps
-    #获取第push参数指令的地址
+    #获取第index条push指令参数的位置（不一定是push，也可能是mov [esp+4],aaa这种形式，因此不能简单地去搜索‘push’）
     eaPush = GetArgPush(addr, index)
     cOpnd = GetOpnd(eaPush, 0)
-    #push全局变量
+    #push全局变量的情况，直接去找全局变量的大小
     if "offset" in cOpnd:
         return BuffSize(eaPush, 0)
-
+    #push [eax]这种情况，无法准确回溯到初始变量，此处不考虑
     if "[" in cOpnd:
         return 0
-    
+    #push eax这种情况，往前回溯相应寄存器值的来源
     eaCurr = RfirstB(eaPush)
     #寻找上一条具有相同操作数的指令
     while cOpnd != GetOpnd(eaCurr, 0) and count != 0:
@@ -42,13 +42,14 @@ def GetArgPush(eaCall, index):
     global g_MaxSteps
     maxstep = g_MaxSteps
     eaCurr = eaCall
-    #获取call指令本身的栈偏移
+    #获取call指令位置处的栈偏移，作为基准栈偏移
     spdA = GetSpd(eaCall)
 
     while maxstep > 0:
+        #循环回溯指令，检查该指令处栈偏移是否有变化
         eaCurr = RfirstB(eaCurr)
         spdB = GetSpd(eaCurr)
-
+        #只有与参数入栈有关的指令才会与基准栈偏移成如下关系：第一个参数的话差值为4，第二个参数为差值8
         if spdB - (index * 4) == spdA:
             #返回该call指令的第index条push指令的地址
             return eaCurr
@@ -72,7 +73,7 @@ def BuffSize(eaInstruc, iOpnum):
         #print Opnd
         #获取对应的函数框架结构ID
         strucID = GetFrame(eaInstruc)
-        #lea的情况
+
         if GetMemberByName(strucID, Opnd) > GetMemberByName(strucID, " r"):
             g_MaxRecurseCount = g_MaxRecurseCount + 1
             if g_MaxRecurseCount < g_MaxSteps:
