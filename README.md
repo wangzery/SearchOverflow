@@ -1,14 +1,26 @@
 # SearchOverflow
 A IDAPython script for searching overflows in IDA.     
 
-Now support：strcpy(), _strcpy(), strcat(), _strcat(), sprintf(), _sprintf(), wsprintfA(), lstrcatA(), lstrcpyA()     
-  
-Refactored by Bugscam.
-
+Now support：
+```   
+strcpy(),    
+_strcpy(),    
+strcat(),    
+_strcat(),    
+sprintf(),    
+_sprintf(),    
+wsprintfA(),    
+lstrcatA(),   
+lstrcpyA()      
+```
+Refactored by Bugscam.    
+    
 ## Usage
 
-Load script in IDA，then use command：SearchOverflow()
-
+Load script in IDA，then use command：    
+```
+> SearchOverflow()
+```
 ## VersionLog
 
 v1.2:
